@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "222470887351",
+    "firebase_url": "https://moneybag-3ac42-default-rtdb.firebaseio.com",
+    "project_id": "moneybag-3ac42",
+    "storage_bucket": "moneybag-3ac42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222470887351:android:68dc455474302c33acfa32",
+        "android_client_info": {
+          "package_name": "com.duala.moneybox_upgrade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222470887351-4ihku1o75hg3qifo3rm24qj34pal9rqh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duala.moneybox_upgrade",
+            "certificate_hash": "bdbdcd965fe92e100dd468b1bb30e5e81e8655b8"
+          }
+        },
+        {
+          "client_id": "222470887351-gip0srtpnd7kejds7ejf85rsd7qaorqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNaxQprrVzOwy1xyt1iT8x7U8s2TeiwYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222470887351-gip0srtpnd7kejds7ejf85rsd7qaorqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
