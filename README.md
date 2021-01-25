@@ -1,16 +1,19 @@
-# moneybox_upgrade
+# moneybag
+# Prefix
+After findning an app I made back in 2018 (MoneyBag) when comtemplating learning native Java for android, I decided to make an improved version of it using flutter. In order to approximate my growth, I gave myself a deadline of 3 days for completion of a working prototype.
 
-A new Flutter application.
+# App description
+Money bag is an expense monitor that allows a user to keep track of his or her expenses. It provides the net sum of all the entered transactions(income and expenses). Using Firebase authentication and Firebase realtime database, this version of money bag (Money Box 2) allows for multiple users to sign up using their google accounts. The realtime database is structured such that access to a user's transaction history is limited to the Google account with which that history was created. Current version does not support transaction history for different categories (visa, mobile money, etc).
 
-## Getting Started
+As at 25th January 2021, a user cannot directly delete an account made. However, I can delete the user's account if emailed (kwekuaacquaye@gmail.com) NOTE: kindly send me the email using the google account with which to signed up (for certainty of ownership)
 
-This project is a starting point for a Flutter application.
+## Functionality
+- Google authentication
+- Addition of transaction (negative values for expense, positive valuesfor income)
+** Removal of transaction
+** account deletion
+** multiple transcation category
+** automation of transaction tracking for mobile money
 
-A few resources to get you started if this is your first Flutter project:
+** => Yet to be implemented
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
