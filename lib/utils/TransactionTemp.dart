@@ -1,12 +1,21 @@
 
 
+import 'package:firebase_database/firebase_database.dart';
+
 class Transaction{
   String _title;
   String _description;
   DateTime _transactionDate = DateTime.now();
   double _amount;
-  //todo add database reference
+  DatabaseReference databaseReference;
 
+
+  Transaction({title = "", description = "",  amount = 0}){
+    this._title = title;
+    this._description = description;
+    this._amount = amount.toDouble();
+
+  }
 
 
 
@@ -22,16 +31,11 @@ class Transaction{
   void setAmount(double amount)
   => _amount = amount;
 
+  void setDatabaseReference(DatabaseReference reference)
+  => this.databaseReference = reference;
 
 
-  createFromMap(Map<String, dynamic> map){
-    setTitle(map["title"]);
-    setDescription(map["description"]);
-    setTransactionDate(map["transactionDate"]);
-    setAmount(map["amount"]);
 
-    return this;
-  }
 
 
   String getTitle()
@@ -43,16 +47,18 @@ class Transaction{
   DateTime getTransactionDate()
   => _transactionDate;
 
-  double getAmount()
-  => _amount;
+  double getAmount() {
+    print("amount $_amount");
+    return _amount;
+  }
 
 
 
   Map<String, dynamic>getMap(){
     return {
-      "title" : getTitle(),
-      "description" : getDescription(),
-      "transactionDate" : getTransactionDate().toString,
+      "title" : _title,
+      "description" : _description,
+      "transactionDate" : _transactionDate.toString(),
       "amount" : getAmount()
     };
   }

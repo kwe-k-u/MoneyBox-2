@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
+import 'package:moneybox_upgrade/utils/resources.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -17,10 +18,15 @@ class _LoginPageState extends State<LoginPage> {
             icon: Icon(Icons.login),
             label: Text("Login with Google"),
             onPressed: (){
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context)=> MyHomePage())
-              );
+
+              //todo switch
+
+                signInWithGoogle().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context)=> MyHomePage())
+                  );
+                });
             },
           ),
         ),

@@ -45,9 +45,13 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
 
                     TextFormField(
                       validator: (value){
-                        if(value.isEmpty)
+                        if(value.isEmpty) {
                           return "Required";
+                        }
                         else
+                          setState(() {
+                            transaction.setTitle(value);
+                          });
                           return null;
                       },
                       decoration: InputDecoration(
@@ -59,9 +63,13 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
 
 
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       validator: (value){
                         if (value.isNotEmpty){
-                          transaction.setAmount(double.parse(value));
+                          setState(() {
+
+                            transaction.setAmount(double.parse(value));
+                          });
                           return null;
                         }else
                           return "Required";
@@ -70,13 +78,18 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
                         hintText: "+/- 0.00",
                         labelText: "Amount",
 
+
                       ),
                     ),
 
 
                     TextFormField(
                       validator: (value){
-                        transaction.setDescription(value);
+                        if (value != null)
+                          setState(() {
+                            transaction.setDescription(value);
+
+                          });
                         return null;
                       },
                       decoration: InputDecoration(
@@ -89,11 +102,11 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
 
 
 
-                  CalendarWidget(
-                    day: 2,
-                    month: 2,
-                    year: 2020,
-                  ),
+                  // CalendarWidget(
+                  //   day: 2,
+                  //   month: 2,
+                  //   year: 1,
+                  // ),
 
 
 
@@ -102,7 +115,8 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
                     child: Text("Save"),
                       onPressed: (){
                       if (formKey.currentState.validate()){
-                        saveTransaction(transaction.getMap());
+                        saveTransaction(transaction);
+                        Navigator.pop(context);
                       }
                   })
                   ],

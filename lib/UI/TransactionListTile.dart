@@ -59,7 +59,7 @@ class TransactionListTile extends StatelessWidget {
             Spacer(),
 
 
-            Text("GHS ${transaction.getAmount().toString()}",
+            Text("GHS ${transaction.getAmount()}",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16.0
