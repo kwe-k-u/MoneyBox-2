@@ -10,10 +10,10 @@ As at 25th January 2021, a user cannot directly delete an account made. However,
 ## Functionality
 - Google authentication
 - Addition of transaction (negative values for expense, positive valuesfor income)
-** Removal of transaction
-** account deletion
-** multiple transcation category
-** automation of transaction tracking for mobile money
+- Removal of transaction **
+- account deletion **
+- multiple transcation category
+- automation of transaction tracking for mobile money **
 
 ** => Yet to be implemented
 
