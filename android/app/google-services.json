@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:222470887351:android:b0219ca19502574aacfa32",
+        "android_client_info": {
+          "package_name": "com.duala.moneybox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222470887351-gip0srtpnd7kejds7ejf85rsd7qaorqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNaxQprrVzOwy1xyt1iT8x7U8s2TeiwYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222470887351-gip0srtpnd7kejds7ejf85rsd7qaorqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:222470887351:android:68dc455474302c33acfa32",
         "android_client_info": {
           "package_name": "com.duala.moneybox_upgrade"

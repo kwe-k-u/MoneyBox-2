@@ -1,4 +1,4 @@
-package com.acquaye.moneybox_upgrade
+package com.duala.moneybag
 
 import io.flutter.embedding.android.FlutterActivity
 
