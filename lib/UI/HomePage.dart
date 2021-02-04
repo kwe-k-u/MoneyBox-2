@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
 import 'package:moneybox_upgrade/UI/BalanceCardWidget.dart';
+import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/TransactionListTile.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
@@ -51,7 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
 
                     ListTile(
-                      leading: Icon(Icons.zoom_out_map),
+                      leading:IconButton(
+                        icon:  Icon(Icons.menu),
+                        onPressed: (){
+                          Navigator.push(context,MaterialPageRoute(
+                              builder: (context)=> SettingsPage())
+                          );
+                        },
+                      ),
                       trailing: Icon(Icons.account_circle),
                       title: Text("Dashboard"), //todo make bold
                       subtitle: Text("Account name"),
@@ -85,8 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
     if (list.length == 0)
-      return Center(
-        child: Text("You have no list of expenses for this account"),
+      return Container(
+        // width: double.infinity,
+        // height: double.infinity,
+        child: Center(
+          child: Text("You have no list of expenses for this account"),
+        ),
       );
 
 
