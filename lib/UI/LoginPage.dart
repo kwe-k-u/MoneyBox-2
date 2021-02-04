@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
+import 'package:moneybox_upgrade/UI/privacy/Privacy.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
 
@@ -19,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
             label: Text("Login with Google"),
             onPressed: (){
 
-              //todo switch
 
                 signInWithGoogle().then((value) {
                   Navigator.push(context,
