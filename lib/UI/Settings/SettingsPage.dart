@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/privacy/Privacy.dart';
+import 'package:moneybox_upgrade/utils/resources.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -7,9 +8,26 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  ThemeData theme = ThemeData.light();
+  bool _themeBool = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getThemeBool().then((value) {
+
+      setState(() {
+        _themeBool = value;
+        theme = getTheme(value);
+      });
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: theme,
       home: Scaffold(
 
         appBar: AppBar(
@@ -44,9 +62,13 @@ class _SettingsPageState extends State<SettingsPage> {
               SwitchListTile(
                 title: Text("Theme"),
                 subtitle: Text("Switch to dark theme"),
-                value: false,
+                value: _themeBool,
                 onChanged: (value){
-                  //switch theme
+                  setTheme(value);
+                  setState(() {
+                    theme = getTheme(value);
+                    _themeBool = value;
+                  });
                 },
               ),
 
