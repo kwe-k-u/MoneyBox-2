@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneybox_upgrade/UI/Settings/CardsListPage.dart';
 import 'package:moneybox_upgrade/UI/privacy/Privacy.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -53,6 +54,9 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 title: Text("Cards"),
                 subtitle: Text("View your card categories"),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> CardsListPage()));
+                },
               ),
 
               ListTile(

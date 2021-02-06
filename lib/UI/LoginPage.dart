@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
+import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/privacy/Privacy.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
@@ -21,12 +22,18 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: (){
 
 
-                signInWithGoogle().then((value) {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context)=> MyHomePage())
-                  );
-                });
+
+              //todo change
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context)=> SettingsPage())
+              );
+                // signInWithGoogle().then((value) {
+                //   Navigator.push(context,
+                //       MaterialPageRoute(
+                //           builder: (context)=> MyHomePage())
+                //   );
+                // });
             },
           ),
         ),

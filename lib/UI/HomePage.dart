@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
-import 'package:moneybox_upgrade/UI/BalanceCardWidget.dart';
+import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/TransactionListTile.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';

@@ -68,7 +68,7 @@ class BalanceCardWidget extends StatelessWidget {
     if (balance.isNegative)
       _colour = Colors.red;
     else
-      _colour = Colors.green;
+      _colour = Colors.green.shade900;
 
     return
       Text("GHS ${this.balance.toStringAsFixed(2)}", //todo add commas and stuff

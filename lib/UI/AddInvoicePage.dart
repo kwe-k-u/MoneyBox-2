@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moneybox_upgrade/UI/CalendarWidget.dart';
+import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/CalendarWidget.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
