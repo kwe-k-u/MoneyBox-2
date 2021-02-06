@@ -77,40 +77,6 @@ void googleSignOut() async {
 
 
 
-// Future<List<Transaction>> getStoredData() async{
-//   List<Transaction> transactions = [];
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Food",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now(),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Food",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now(),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Rice",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now().subtract(Duration(days: 1)),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//
-//
-//
-//   return transactions;
-// }
 
   Future<List<Transaction>> getTransactions() async {
     DataSnapshot dataSnapshot = await databaseReference.child('${user.uid}/transactions').once();
@@ -143,7 +109,7 @@ void googleSignOut() async {
 
   void setTheme(bool value) async{
     final preference = await SharedPreferences.getInstance();
-    preference.setBool("darkTheme", value);
+    await preference.setBool("darkTheme", value);
   }
 
 

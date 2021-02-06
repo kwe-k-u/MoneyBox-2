@@ -14,6 +14,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
     getThemeBool().then((value) {
 
       setState(() {
@@ -21,11 +26,6 @@ class _SettingsPageState extends State<SettingsPage> {
         theme = getTheme(value);
       });
     });
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
       home: Scaffold(
