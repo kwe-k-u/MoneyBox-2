@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moneybox_upgrade/utils/resources.dart';
 
 
 class SimplePrivacyPage extends StatefulWidget {
@@ -9,9 +10,23 @@ class SimplePrivacyPage extends StatefulWidget {
 
 class _SimplePrivacyPageState extends State<SimplePrivacyPage> {
   int _step = 0;
+  ThemeData theme = ThemeData.light();
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+    getThemeBool().then((value) {
+      setState(() {
+        theme = getTheme(value);
+      });
+    });
+
+
     return MaterialApp(
+      theme: theme,
       home: Scaffold(
         body: Stepper(
           currentStep: _step,

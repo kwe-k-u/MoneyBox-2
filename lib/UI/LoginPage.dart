@@ -11,9 +11,27 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  ThemeData theme = ThemeData.light();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    googleSignOut();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    getThemeBool().then((value) {
+      setState(() {
+        theme = getTheme(value);
+      });
+    });
+
     return MaterialApp(
+      theme: theme,
       home: Scaffold(
         body: Center(
           child: ElevatedButton.icon(

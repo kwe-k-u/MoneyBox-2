@@ -12,6 +12,21 @@ class AddInvoicePage extends StatefulWidget {
 class _AddInvoicePageState extends State<AddInvoicePage> {
   final formKey = GlobalKey<FormState>();
   Transaction transaction = new Transaction();
+ThemeData theme = ThemeData.light();
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    getThemeBool().then((value) {
+      setState(() {
+        theme = getTheme(value);
+      });
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +34,7 @@ class _AddInvoicePageState extends State<AddInvoicePage> {
 
 
     return MaterialApp(
+      theme: theme,
       home: Scaffold(
         appBar: AppBar(
           leading: BackButton(

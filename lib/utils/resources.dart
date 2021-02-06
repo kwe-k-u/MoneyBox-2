@@ -2,8 +2,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -75,40 +77,6 @@ void googleSignOut() async {
 
 
 
-// Future<List<Transaction>> getStoredData() async{
-//   List<Transaction> transactions = [];
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Food",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now(),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Food",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now(),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//   transactions.add(new Transaction().createFromMap(
-//       {
-//         "title": "Rice",
-//         "description": "Morning koko",
-//         "transactionDate": DateTime.now().subtract(Duration(days: 1)),
-//         "amount": 8.0
-//       }
-//   )
-//   );
-//
-//
-//
-//   return transactions;
-// }
 
   Future<List<Transaction>> getTransactions() async {
     DataSnapshot dataSnapshot = await databaseReference.child('${user.uid}/transactions').once();
@@ -130,4 +98,27 @@ void googleSignOut() async {
     return transactionList;
   }
 
+
+  ///Gets a boolean to show the user's preference for dark theme. If none is used then,
+/// the default is false
+  Future<bool> getThemeBool() async{
+    final preference = await SharedPreferences.getInstance();
+    return  preference.getBool("darkTheme") ?? false;
+  }
+
+
+  void setTheme(bool value) async{
+    final preference = await SharedPreferences.getInstance();
+    await preference.setBool("darkTheme", value);
+  }
+
+
+  ///Returns a theme based on the boolean entered. True for dark theme and false for light
+  ThemeData getTheme(bool value){
+
+    if (value) //if user prefers dark theme
+      return ThemeData.dark();
+
+      return ThemeData.light();
+  }
 
