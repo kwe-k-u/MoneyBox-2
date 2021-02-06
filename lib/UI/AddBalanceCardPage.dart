@@ -7,6 +7,11 @@ class AddBalanceCardPage extends StatefulWidget {
 
 class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
   Size size;
+  String _name = "";
+  String _icon = "Icons.person";
+  String _theme = "Colors.black";
+
+
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -31,7 +36,13 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                 decoration: InputDecoration(
                   icon: Text("Card name"),
                 ),
+                onChanged: (value){
+                  setState(() {
+                    _name = value;
+                  });
+                },
               ),
+
 
               //Theme
               Padding(
@@ -85,6 +96,9 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                     ],
                     onChanged:(value){
 
+                      setState(() {
+                        _theme = value;
+                      });
                     }),
               ),
 
@@ -162,9 +176,12 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                     ],
                     onChanged:(value){
 
+                      setState(() {
+                        _icon = value;
+                      });
                     }),
               ),
-          Spacer(),
+              Spacer(),
 
 
 
@@ -173,7 +190,9 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
             child: Text("Add Card"),
             onPressed: (){
               //todo upload card
-              Navigator.pop(context);
+              if (_name.isNotEmpty) {
+                Navigator.pop(context);
+              }
             }
           )
             ],
