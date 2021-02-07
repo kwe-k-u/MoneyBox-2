@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneybox_upgrade/utils/resources.dart';
 
 class AddBalanceCardPage extends StatefulWidget {
   @override
@@ -10,14 +11,29 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
   String _name = "";
   String _icon = "Icons.person";
   String _theme = "Colors.black";
+  ThemeData pageTheme;
 
+
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
+    getThemeBool().then((value) {
+
+      setState(() {
+        pageTheme = getTheme(value);
+      });
+    });
 
 
     return MaterialApp(
+      theme: pageTheme,
       home: Scaffold(
         appBar: AppBar(
           title: Text("Add Card"),
