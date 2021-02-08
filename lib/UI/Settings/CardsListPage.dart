@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/AddBalanceCardPage.dart';
+import 'package:moneybox_upgrade/utils/Card.dart';
+import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
 
@@ -53,18 +56,28 @@ class _CardsListPageState extends State<CardsListPage> {
 
 
             body: Container(
-              child: ListView.builder(
-                  padding: EdgeInsets.all(12.0),
+              child: FutureBuilder(
+                future: getCardList(),
+                builder: (context,snapshot){
 
-                  itemBuilder: (context,count){
+                  print(snapshot);
+                  return ListView.builder(
+                    itemCount:snapshot.data.length ,
+                      itemBuilder: (context,index){
+                      CardTemp card = snapshot.data[index];
+
                     return Padding(
                       padding: EdgeInsets.only(top: 12.0),
                       child: BalanceCardWidget(
-                        colour: Colors.blue,
-                        balance: 0.2,
+                        name: card.getName(),
+                        icon: card.getIcon(),
+                        colour: card.getTheme(),
+                        balance: 0,
                       ),
                     );
-                  }),
+                  });
+                },
+              )
             ),
           ),
         );
@@ -73,7 +86,3 @@ class _CardsListPageState extends State<CardsListPage> {
     });
   }
 }
-//todo add registration process
-/**
- * add account name and create first card
- */

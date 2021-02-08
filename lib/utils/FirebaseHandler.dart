@@ -17,12 +17,11 @@ Future<List<CardTemp>>getCardList() async{
 
   CollectionReference collection = collectionReference.collection("cards");
 
-  collection.get().then((value) {
+  await collection.get().then((value) {
 
 
     for (QueryDocumentSnapshot data in value.docs){
-      Map<String, String> map = data.data();
-      print('card list ${map.toString()} ');
+      Map<String, String> map = Map<String, String>.from(data.data());
       CardTemp temp = new CardTemp(map["name"], map["icon"], map["theme"]);
       list.add(temp);
     }
@@ -34,22 +33,24 @@ Future<List<CardTemp>>getCardList() async{
 
 
 ///Returns a list of transactions attached to the currently selected card
-getTransactionList() async{
-  CollectionReference collection = collectionReference
-      .collection("cards/$currentCard}/transactions");
+Future<List<TransactionTemp>>getTransactionList() async{
   List<TransactionTemp> transactionList = [];
+  CollectionReference collection = collectionReference
+      .collection("cards/${currentCard.getName()}/transactions");
 
-  collection.get().then((value) {
+  await collection.get().then((value) {
 
     for (QueryDocumentSnapshot data in value.docs){
-      Map<String, String> map = data.data();
-      print('transaction list ${map.toString()} ');
+      Map<String, dynamic> map = Map<String,dynamic>.from(data.data());
+
       TransactionTemp temp = new TransactionTemp(
         title: map["title"],
         description: map["description"],
         amount: map["amount"]
       );
+
       temp.setDatabaseReference(data.reference);
+      transactionList.add(temp);
     }
 
   });
@@ -60,7 +61,7 @@ getTransactionList() async{
 
 
 ///Creates a new card (category) for transactions
-addCard(CardTemp card){
+void addCard(CardTemp card){
 
   CollectionReference id = card.databaseReference;
 
@@ -112,7 +113,6 @@ Future<bool> getUserData() async{
       exists = value.exists;
       if (value.exists) {
         Map<String, String> map = Map<String,String>.from(value.data());
-        // print('user data ${map.toString()} ');
 
         currentCard = new CardTemp(map["name"], map["icon"], map["theme"], );
       }

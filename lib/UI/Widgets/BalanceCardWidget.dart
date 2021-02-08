@@ -65,22 +65,25 @@ class BalanceCardWidget extends StatelessWidget {
 
   Widget _showBalanceText(){
     Color _colour;
-    String _text;
 
 
     //Selecting a colour
-    if (balance.isNegative)
-      _colour = Colors.red;
-    else
-      _colour = Colors.green.shade900;
+    print("balance $balance");
+    if (balance != null) {
+      if (balance.isNegative)
+        _colour = Colors.red;
+      else
+        _colour = Colors.green.shade900;
 
-    return
-      Text("GHS ${this.balance.toStringAsFixed(2)}", //todo add commas and stuff
-          style: TextStyle(
-              color: _colour,
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold
-          )
-      );
+     return
+        Text("GHS ${this.balance.toStringAsFixed(2)}", //todo add commas and stuff
+            style: TextStyle(
+                color: _colour,
+                fontSize: 32.0,
+                fontWeight: FontWeight.bold
+            )
+        );
+    }
+    return Container();
   }
 }
