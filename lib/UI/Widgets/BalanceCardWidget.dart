@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 class BalanceCardWidget extends StatelessWidget {
 
   BalanceCardWidget({
+    this.name,
     this.balance,
     this.colour,
+    this.icon,
 });
 
     final double balance;
     final Color colour;
+    final String name;
+    final IconData icon;
 
 
 
@@ -38,7 +42,7 @@ class BalanceCardWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 )
               ),
-              Icon(Icons.wifi,color: Colors.white,)
+              Icon(icon,color: Colors.white,)
             ],
           ),
 
@@ -49,7 +53,7 @@ class BalanceCardWidget extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Mobile Money",
+          Text(name,
           style: TextStyle(color: Colors.white),),
           _showBalanceText(),
         ],

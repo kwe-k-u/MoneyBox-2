@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:moneybox_upgrade/UI/AddBalanceCardPage.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/privacy/Privacy.dart';
+import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
 
@@ -11,6 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   ThemeData theme = ThemeData.light();
   @override
   void initState() {
@@ -41,17 +44,23 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-              //todo change
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context)=> SettingsPage())
-              );
-                // signInWithGoogle().then((value) {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(
-                //           builder: (context)=> MyHomePage())
-                //   );
-                // });
+                signInWithGoogle().then((value) {
+                  getUserData().then((boolean){
+                    if (boolean){
+                      //If a previous card was selected (a returning user)
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context)=> MyHomePage())
+                      );
+                    } else {
+                      //If no card has been selected (a new use)
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context)=> AddBalanceCardPage())
+                      );
+                    }
+                  });
+                });
             },
           ),
         ),

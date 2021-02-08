@@ -1,16 +1,16 @@
 
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Transaction{
+class TransactionTemp{
   String _title;
   String _description;
   DateTime _transactionDate = DateTime.now();
   double _amount;
-  DatabaseReference databaseReference;
+  DocumentReference databaseReference;
 
 
-  Transaction({title = "", description = "",  amount = 0}){
+  TransactionTemp({title = "", description = "",  amount = 0}){
     this._title = title;
     this._description = description;
     this._amount = amount.toDouble();
@@ -31,7 +31,7 @@ class Transaction{
   void setAmount(double amount)
   => _amount = amount;
 
-  void setDatabaseReference(DatabaseReference reference)
+  void setDatabaseReference(DocumentReference reference)
   => this.databaseReference = reference;
 
 

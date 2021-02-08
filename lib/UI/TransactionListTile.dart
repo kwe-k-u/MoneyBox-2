@@ -9,7 +9,7 @@ class TransactionListTile extends StatelessWidget {
     this.transaction
 });
 
-  final Transaction transaction;
+  final TransactionTemp transaction;
   final IconData thumbnail;
 
   @override

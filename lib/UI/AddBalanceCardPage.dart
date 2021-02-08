@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moneybox_upgrade/utils/Card.dart';
+import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
 class AddBalanceCardPage extends StatefulWidget {
@@ -64,10 +66,16 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButtonFormField(
+                    onChanged:(value){
+
+                      setState(() {
+                        _theme = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       icon: Text("Theme")
                     ),
-                    value: "Colors.black",
+                    value: _theme,
 
                     items: [
                       /**
@@ -110,22 +118,23 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                       ),
 
                     ],
-                    onChanged:(value){
-
-                      setState(() {
-                        _theme = value;
-                      });
-                    }),
+                ),
               ),
 
               //Icon
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButtonFormField(
+                    onChanged:(value){
+
+                      setState(() {
+                        _icon = value;
+                      });
+                    },
                     decoration: InputDecoration(
                         icon: Text("Icon")
                     ),
-                    value: "Icons.person",
+                    value: _icon,
 
                     //todo style to be a grid maybe? or a popup of a grid
                     items: [
@@ -190,12 +199,7 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                           child: Icon(Icons.work)
                       ),
                     ],
-                    onChanged:(value){
-
-                      setState(() {
-                        _icon = value;
-                      });
-                    }),
+                ),
               ),
               Spacer(),
 
@@ -207,6 +211,10 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
             onPressed: (){
               //todo upload card
               if (_name.isNotEmpty) {
+                setState(() {
+                  addCard(new CardTemp(_name, _icon, _theme));
+
+                });
                 Navigator.pop(context);
               }
             }

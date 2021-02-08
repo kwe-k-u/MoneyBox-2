@@ -75,7 +75,8 @@ class _SimplePrivacyPageState extends State<SimplePrivacyPage> {
                 content: Column(
                   children: [
                     Placeholder(fallbackHeight: 200.0, fallbackWidth: 60.0,),
-                    Text("This allows us to uniquely identify users(authentication during login) to prevent wrong access to information."
+                    Text("This allows us to uniquely identify users(authentication during login)"
+                        " to prevent wrong access to information.\nIt also allows us to refer to you by your Google account name"
                         ,style: GoogleFonts.aladin()
                     )
                   ],

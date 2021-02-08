@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
-import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/TransactionListTile.dart';
+import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
+import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
                 body: FutureBuilder(
-                  future: getTransactions(),
+                  future: getTransactionList(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       for (var e in snapshot.data)
@@ -71,15 +72,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                   );
                                 },
                               ),
-                              trailing: Icon(Icons.account_circle),
+
+                              trailing: Image.network(user.photoURL,
+                                height: 40.0,
+                                width: 40.0,),
+
                               title: Text("Dashboard"), //todo make bold
-                              subtitle: Text("Account name"),
+
+                              subtitle: Text(user.displayName),
                             ),
 
 
                             BalanceCardWidget(
-                              colour: Colors.black,
+                              name: currentCard.getName(),
+                              colour: currentCard.getTheme(),
                               balance: total,
+                              icon: currentCard.getIcon(),
                             ),
 
                             expenseList(snapshot.data)
@@ -99,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-  Widget expenseList(List<Transaction> list){
+  Widget expenseList(List<TransactionTemp> list){
     DateTime _previous = DateTime.now();
 
 
@@ -126,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context,index){
               //=====================================================
               //transactions to test header
-              Transaction transaction = list.elementAt(index);
+              TransactionTemp transaction = list.elementAt(index);
 
 
 

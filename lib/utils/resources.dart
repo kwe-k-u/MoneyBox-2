@@ -1,10 +1,9 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
+import 'package:moneybox_upgrade/utils/Card.dart';
+import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -14,8 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
- User user;
-final databaseReference = FirebaseDatabase.instance.reference();
+CardTemp currentCard;
+User user;
 
 
 
@@ -25,20 +24,6 @@ final databaseReference = FirebaseDatabase.instance.reference();
 
 
 
-void saveTransaction(Transaction transaction){
-  DatabaseReference id = transaction.databaseReference;
-  print("asdf user ${transaction.getMap()}");
-
-
-  if (id == null) {
-    id = databaseReference.child('${user.uid}/transactions/').push();
-    id.set(transaction.getMap());
-  } else {
-    id.update(transaction.getMap());
-  }
-
-  transaction.setDatabaseReference(id);
-}
 
 
 
@@ -47,7 +32,6 @@ void saveTransaction(Transaction transaction){
 
 ///Allows a user with a Google account to sign in
 Future<User> signInWithGoogle() async{
-
 
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
@@ -65,7 +49,7 @@ Future<User> signInWithGoogle() async{
   final User currentUser = _auth.currentUser;
   assert(currentUser.uid == user.uid);
 
-
+  collectionReference = FirebaseFirestore.instance.doc("users/${user.uid}");
 
   return user;
 }
@@ -78,25 +62,6 @@ void googleSignOut() async {
 
 
 
-  Future<List<Transaction>> getTransactions() async {
-    DataSnapshot dataSnapshot = await databaseReference.child('${user.uid}/transactions').once();
-    List<Transaction> transactionList = [];
-    if (dataSnapshot.value != null){
-      dataSnapshot.value.forEach((key,value) {
-        Transaction transaction = new Transaction(
-          title: value["title"],
-          description: value["description"],
-          amount: value["amount"]
-        );
-
-        transaction.setTransactionDate(DateTime.parse(value["transactionDate"]));
-        transaction.setDatabaseReference(databaseReference.child('${user.uid}/transactions/' + key));
-        transactionList.add(transaction);
-      }
-      );
-    }
-    return transactionList;
-  }
 
 
   ///Gets a boolean to show the user's preference for dark theme. If none is used then,
@@ -121,4 +86,6 @@ void googleSignOut() async {
 
       return ThemeData.light();
   }
+
+
 
