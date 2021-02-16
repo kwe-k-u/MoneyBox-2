@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
@@ -34,24 +35,27 @@ class _LoginPageState extends State<LoginPage> {
       theme: theme,
       home: Scaffold(
         body: Center(
-          child: ElevatedButton.icon(
-            icon: Icon(Icons.login),
-            label: Text("Login with Google"),
+          child: OutlineButton(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                Text("Login with Google"),
+              ],
+            ),
             onPressed: (){
 
 
 
-              //todo change
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context)=> SettingsPage())
-              );
-                // signInWithGoogle().then((value) {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(
-                //           builder: (context)=> MyHomePage())
-                //   );
-                // });
+                signInWithGoogle().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context)=> MyHomePage())
+                  );
+                });
             },
           ),
         ),
@@ -59,3 +63,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+
