@@ -45,20 +45,20 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
 
 
-              ListTile(
-                title: Text("Profile"),
-                subtitle: Text("View and edit information provided about this account"),
-              ),
+              // ListTile(
+              //   title: Text("Profile"),
+              //   subtitle: Text("View and edit information provided about this account"),
+              // ),
 
-              ListTile(
-                title: Text("Notifications"),
-              ),
+              // ListTile(
+              //   title: Text("Notifications"),
+              // ),
 
 
-              ListTile(
-                title: Text("Automated entry"),
-                subtitle: Text("Automatically add an entry based on keywords"),
-              ),
+              // ListTile(
+              //   title: Text("Automated entry"),
+              //   subtitle: Text("Automatically add an entry based on keywords"),
+              // ),
 
               SwitchListTile(
                 title: Text("Theme"),
