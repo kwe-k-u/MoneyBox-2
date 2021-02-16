@@ -48,7 +48,7 @@ class _CardsListPageState extends State<CardsListPage> {
                 child: Icon(Icons.add),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context)=> AddBalanceCardPage())
+                      builder: (c)=> AddBalanceCardPage())
                   );
                 }
             ),
@@ -60,7 +60,7 @@ class _CardsListPageState extends State<CardsListPage> {
                 future: getCardList(),
                 builder: (context,snapshot){
 
-                  print(snapshot);
+                  // print(snapshot);
                   return ListView.builder(
                     itemCount:snapshot.data.length ,
                       itemBuilder: (context,index){
@@ -72,7 +72,6 @@ class _CardsListPageState extends State<CardsListPage> {
                         name: card.getName(),
                         icon: card.getIcon(),
                         colour: card.getTheme(),
-                        balance: 0,
                       ),
                     );
                   });

@@ -57,7 +57,7 @@ class BalanceCardWidget extends StatelessWidget {
           style: TextStyle(color: Colors.white),),
           _showBalanceText(),
         ],
-      ),
+      ) ,
         ],
       ),
     );
@@ -66,10 +66,10 @@ class BalanceCardWidget extends StatelessWidget {
   Widget _showBalanceText(){
     Color _colour;
 
-
+    if (this.balance ==null) //default value for no balance to show
+      return Container();
     //Selecting a colour
     print("balance $balance");
-    if (balance != null) {
       if (balance.isNegative)
         _colour = Colors.red;
       else
@@ -83,7 +83,6 @@ class BalanceCardWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold
             )
         );
-    }
-    return Container();
+
   }
 }
