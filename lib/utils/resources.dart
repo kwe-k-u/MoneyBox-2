@@ -16,6 +16,7 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
  User user;
 final databaseReference = FirebaseDatabase.instance.reference();
+ThemeData theme;
 
 
 

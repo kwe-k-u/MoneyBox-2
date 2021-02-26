@@ -12,19 +12,9 @@ class AddInvoicePage extends StatefulWidget {
 class _AddInvoicePageState extends State<AddInvoicePage> {
   final formKey = GlobalKey<FormState>();
   Transaction transaction = new Transaction();
-ThemeData theme = ThemeData.light();
 
 
 
-  @override
-  void initState() {
-    super.initState();
-    getThemeBool().then((value) {
-      setState(() {
-        theme = getTheme(value);
-      });
-    });
-  }
 
 
 
@@ -33,87 +23,85 @@ ThemeData theme = ThemeData.light();
     Size size = MediaQuery.of(context).size;
 
 
-    return MaterialApp(
-      theme: theme,
-      home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          ),
-          title: Text('Add transaction'),
+    return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
         ),
+        title: Text('Add transaction'),
+      ),
 
 
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            width: size.width,
-            padding: EdgeInsets.all(8.0),
-            child: Form(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          width: size.width,
+          padding: EdgeInsets.all(8.0),
+          child: Form(
               key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
 
 
-                    TextFormField(
-                      validator: (value){
-                        if(value.isEmpty) {
-                          return "Required";
-                        }
-                        else
-                          setState(() {
-                            transaction.setTitle(value);
-                          });
-                          return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Transaction title. Eg: Groceries"
-                      ),
+                  TextFormField(
+                    validator: (value){
+                      if(value.isEmpty) {
+                        return "Required";
+                      }
+                      else
+                        setState(() {
+                          transaction.setTitle(value);
+                        });
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Transaction title. Eg: Groceries"
                     ),
+                  ),
 
 
 
 
-                    TextFormField(
-                      keyboardType: TextInputType.number,
-                      validator: (value){
-                        if (value.isNotEmpty){
-                          setState(() {
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    validator: (value){
+                      if (value.isNotEmpty){
+                        setState(() {
 
-                            transaction.setAmount(double.parse(value));
-                          });
-                          return null;
-                        }else
-                          return "Required";
-                      },
-                      decoration: InputDecoration(
-                        hintText: "+/- 0.00",
-                        labelText: "Amount",
-
-
-                      ),
-                    ),
-
-
-                    TextFormField(
-                      validator: (value){
-                        if (value != null)
-                          setState(() {
-                            transaction.setDescription(value);
-
-                          });
+                          transaction.setAmount(double.parse(value));
+                        });
                         return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "One line description of transaction",
-                        labelText: "Description of transaction (Optional)",
+                      }else
+                        return "Required";
+                    },
+                    decoration: InputDecoration(
+                      hintText: "+/- 0.00",
+                      labelText: "Amount",
 
-                      ),
+
                     ),
+                  ),
+
+
+                  TextFormField(
+                    validator: (value){
+                      if (value != null)
+                        setState(() {
+                          transaction.setDescription(value);
+
+                        });
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "One line description of transaction",
+                      labelText: "Description of transaction (Optional)",
+
+                    ),
+                  ),
 
 
 
@@ -128,16 +116,15 @@ ThemeData theme = ThemeData.light();
 
                   //Button to save entry
                   ElevatedButton(
-                    child: Text("Save"),
+                      child: Text("Save"),
                       onPressed: (){
-                      if (formKey.currentState.validate()){
-                        saveTransaction(transaction);
-                        Navigator.pop(context);
-                      }
-                  })
-                  ],
-                )
-            ),
+                        if (formKey.currentState.validate()){
+                          saveTransaction(transaction);
+                          Navigator.pop(context);
+                        }
+                      })
+                ],
+              )
           ),
         ),
       ),

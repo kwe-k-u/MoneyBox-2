@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
 import 'package:moneybox_upgrade/UI/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
-import 'package:moneybox_upgrade/UI/TransactionListTile.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
@@ -13,7 +12,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ThemeData theme ;
 
   String _headerText(DateTime date){
     DateTime _today = DateTime.now();
@@ -31,70 +29,58 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double total = 0.0;
-    return FutureBuilder(
-      future: getThemeBool(),
-        builder: (context, snap){
-      if (snap.connectionState == ConnectionState.done) {
-          theme = getTheme(snap.data);
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => AddInvoicePage()
+            ));
+          },
+          child: Icon(Icons.add),
+        ),
 
-        return MaterialApp(
-          theme: theme,
-            home: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => AddInvoicePage()
-                    ));
-                  },
-                  child: Icon(Icons.add),
+
+        body: FutureBuilder(
+          future: getTransactions(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              for (var e in snapshot.data)
+                total += e.getAmount();
+              return Padding(
+                padding: const EdgeInsets.only(
+                    top: 24.0, bottom: 12.0, left: 8.0, right: 8.0),
+                child: Column(
+                  children: [
+
+                    ListTile(
+                      leading: IconButton(
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => SettingsPage())
+                          );
+                        },
+                      ),
+                      trailing: Icon(Icons.account_circle),
+                      title: Text("Dashboard"), //todo make bold
+                      subtitle: Text("Account name"),
+                    ),
+
+
+                    BalanceCardWidget(
+                      colour: Colors.black,
+                      balance: total,
+                    ),
+
+                    expenseList(snapshot.data)
+                  ],
                 ),
-
-
-                body: FutureBuilder(
-                  future: getTransactions(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      for (var e in snapshot.data)
-                        total += e.getAmount();
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                            top: 24.0, bottom: 12.0, left: 8.0, right: 8.0),
-                        child: Column(
-                          children: [
-
-                            ListTile(
-                              leading: IconButton(
-                                icon: Icon(Icons.menu),
-                                onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => SettingsPage())
-                                  );
-                                },
-                              ),
-                              trailing: Icon(Icons.account_circle),
-                              title: Text("Dashboard"), //todo make bold
-                              subtitle: Text("Account name"),
-                            ),
-
-
-                            BalanceCardWidget(
-                              colour: Colors.black,
-                              balance: total,
-                            ),
-
-                            expenseList(snapshot.data)
-                          ],
-                        ),
-                      );
-                    }
-                    return Center(child: CircularProgressIndicator(),);
-                  },
-                )
-            )
-        );
-      }
-      return CircularProgressIndicator();
-    });
+              );
+            }
+            return Center(child: CircularProgressIndicator(),);
+          },
+        )
+    );
   }
 
 
@@ -163,4 +149,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+//todo remove in original (PLACEHOLDER)
+Widget TransactionListTile({IconData thumbnail, Transaction transaction}) {
+}
+
+
 
