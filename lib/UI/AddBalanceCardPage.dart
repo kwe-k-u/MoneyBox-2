@@ -160,6 +160,81 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                         child: Icon(Icons.attach_money)
                     ),
 
+
+                    //grey
+                    DropdownMenuItem(
+                        value: "Colors.grey",
+                        child: Text("Grey")
+                    ),
+
+                  ],
+                  onChanged:(value){
+
+                    setState(() {
+                      _theme = value;
+                    });
+                  }),
+            ),
+
+            //Icon
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                      icon: Text("Icon")
+                  ),
+                  value: "Icons.person",
+
+                  //todo style to be a grid maybe? or a popup of a grid
+                  items: [
+                    /**
+                     * person
+                     * home_outline
+                     * account_balance_wallet
+                     * airplanemode_active
+                     * airport_shuttle
+                     * attach_money
+                     * wifi
+                     * work
+                     *
+                     */
+
+                    //person
+                    DropdownMenuItem(
+                        value: "Icons.person",
+                        child: Icon(Icons.person)
+                    ),
+
+                    //account_balance wallet
+                    DropdownMenuItem(
+                        value: "Icons.account_balance_wallet",
+                        child: Icon(Icons.account_balance_wallet)
+                    ),
+
+                    //home_outline
+                    DropdownMenuItem(
+                        value: "Icons.home_outlined",
+                        child: Icon(Icons.home_outlined)
+                    ),
+
+                    //airplanemode_active
+                    DropdownMenuItem(
+                        value: "Icons.airplanemode_active",
+                        child: Icon(Icons.airplanemode_active)
+                    ),
+
+                    //airport shuttle
+                    DropdownMenuItem(
+                        value: "Icons.airport_shuttle",
+                        child: Icon(Icons.airport_shuttle)
+                    ),
+
+                    //attach money
+                    DropdownMenuItem(
+                        value: "Icons.attach_money",
+                        child: Icon(Icons.attach_money)
+                    ),
+
                     //wifi
                     DropdownMenuItem(
 
@@ -181,9 +256,6 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                   }),
             ),
             Spacer(),
-
-
-
 
             ElevatedButton(
                 child: Text("Add Card"),

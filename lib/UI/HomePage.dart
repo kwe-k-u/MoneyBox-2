@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
-import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
+import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
+import 'package:moneybox_upgrade/UI/Widgets/TransactionListTile.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     top: 24.0, bottom: 12.0, left: 8.0, right: 8.0),
                 child: Column(
                   children: [
+
 
                     ListTile(
                       leading: IconButton(
@@ -151,9 +153,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-//todo remove in original (PLACEHOLDER)
-Widget TransactionListTile({IconData thumbnail, Transaction transaction}) {
-}
 
 
 
