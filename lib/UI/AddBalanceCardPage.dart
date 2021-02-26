@@ -204,7 +204,7 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                 onPressed: (){
                   //todo upload card
                   if (_name.isNotEmpty) {
-                    Navigator.pop(context);
+                    addCard(new CardTemp(_name, _icon, _theme));
                   }
                 }
             )

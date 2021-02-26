@@ -50,21 +50,30 @@ class _CardsListPageState extends State<CardsListPage> {
                 future: getCardList(),
                 builder: (context,snapshot){
 
-                  // print(snapshot);
-                  return ListView.builder(
-                    itemCount:snapshot.data.length ,
-                      itemBuilder: (context,index){
-                      CardTemp card = snapshot.data[index];
+                  if (snapshot.connectionState == ConnectionState.done ) {
+                    // if there are cards, display else create a new chard
+                    if (snapshot.hasData)
+                    return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          CardTemp card = snapshot.data[index];
 
-                    return Padding(
-                      padding: EdgeInsets.only(top: 12.0),
-                      child: BalanceCardWidget(
-                        name: card.getName(),
-                        icon: card.getIcon(),
-                        colour: card.getTheme(),
-                      ),
-                    );
-                  });
+                          return Padding(
+                            padding: EdgeInsets.only(top: 12.0),
+                            child: BalanceCardWidget(
+                              name: card.getName(),
+                              icon: card.getIcon(),
+                              colour: card.getTheme(),
+                            ),
+                          );
+                        });
+                    else
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> AddBalanceCardPage()));
+
+                  }
+
+                  //Interface while waiting for data request completion
+                  return Center(child: CircularProgressIndicator(),);
                 })
             )
     );

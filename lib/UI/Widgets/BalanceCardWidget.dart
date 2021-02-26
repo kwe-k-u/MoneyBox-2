@@ -35,7 +35,7 @@ class BalanceCardWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Balance",
+              Text(name.,
                 style: TextStyle(
                     color: Colors.white,
                   fontSize: 18.0,
@@ -53,7 +53,7 @@ class BalanceCardWidget extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(name,
+          Text("BALANCE",
           style: TextStyle(color: Colors.white),),
           _showBalanceText(),
         ],
@@ -69,7 +69,6 @@ class BalanceCardWidget extends StatelessWidget {
     if (this.balance ==null) //default value for no balance to show
       return Container();
     //Selecting a colour
-    print("balance $balance");
       if (balance.isNegative)
         _colour = Colors.red;
       else
