@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/AddBalanceCardPage.dart';
+import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
 
 
 class CardsListPage extends StatefulWidget {
@@ -11,21 +11,20 @@ class CardsListPage extends StatefulWidget {
 class _CardsListPageState extends State<CardsListPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
 
-        appBar: AppBar(
-          title: Text("Cards"),
-          centerTitle: true,
-          leading: BackButton(
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          ),
+      appBar: AppBar(
+        title: Text("Cards"),
+        centerTitle: true,
+        leading: BackButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
         ),
+      ),
 
 
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
           elevation: 20.0,
           child: Icon(Icons.add),
           onPressed: (){
@@ -33,24 +32,23 @@ class _CardsListPageState extends State<CardsListPage> {
                 builder: (context)=> AddBalanceCardPage())
             );
           }
-        ),
+      ),
 
 
 
-        body: Container(
-          child: ListView.builder(
+      body: Container(
+        child: ListView.builder(
             padding: EdgeInsets.all(12.0),
 
-              itemBuilder: (context,count){
-            return Padding(
-              padding: EdgeInsets.only(top: 12.0),
-              child: BalanceCardWidget(
-                colour: Colors.blue,
-                balance: 0.2,
-              ),
-            );
-          }),
-        ),
+            itemBuilder: (context,count){
+              return Padding(
+                padding: EdgeInsets.only(top: 12.0),
+                child: BalanceCardWidget(
+                  colour: Colors.blue,
+                  balance: 0.2,
+                ),
+              );
+            }),
       ),
     );
   }
