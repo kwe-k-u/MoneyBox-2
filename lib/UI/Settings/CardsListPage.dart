@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'file:///F:/Projects/Flutter/moneybox_upgrade/lib/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/AddBalanceCardPage.dart';
 import 'package:moneybox_upgrade/utils/Card.dart';
 import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
+import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
 
 
 class CardsListPage extends StatefulWidget {
@@ -22,36 +22,26 @@ class _CardsListPageState extends State<CardsListPage> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
 
-    return FutureBuilder(
-      future: getThemeBool(),
-        builder: (context,snapshot){
-      if (snapshot.connectionState == ConnectionState.done){
-        theme = getTheme(snapshot.data);
-        return MaterialApp(
-          theme: theme,
-          home: Scaffold(
-
-            appBar: AppBar(
-              title: Text("Cards"),
-              centerTitle: true,
-              leading: BackButton(
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-
-
-            floatingActionButton: FloatingActionButton(
-                elevation: 20.0,
-                child: Icon(Icons.add),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (c)=> AddBalanceCardPage())
-                  );
-                }
-            ),
+      appBar: AppBar(
+        title: Text("Cards"),
+        centerTitle: true,
+        leading: BackButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          elevation: 20.0,
+          child: Icon(Icons.add),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context)=> AddBalanceCardPage())
+            );
+          }
+      ),
 
 
 
@@ -75,13 +65,9 @@ class _CardsListPageState extends State<CardsListPage> {
                       ),
                     );
                   });
-                },
-              )
-            ),
-          ),
-        );
-      } else
-      return CircularProgressIndicator();
-    });
+                })
+            )
+    );
+
   }
 }

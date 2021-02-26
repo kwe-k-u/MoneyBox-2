@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddBalanceCardPage.dart';
 import 'package:moneybox_upgrade/UI/HomePage.dart';
@@ -27,20 +28,20 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
-    getThemeBool().then((value) {
-      setState(() {
-        theme = getTheme(value);
-      });
-    });
+    return Scaffold(
+      body: Center(
+        child: OutlineButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
 
-    return MaterialApp(
-      theme: theme,
-      home: Scaffold(
-        body: Center(
-          child: ElevatedButton.icon(
-            icon: Icon(Icons.login),
-            label: Text("Login with Google"),
-            onPressed: (){
+              Text("Login with Google"),
+            ],
+          ),
+          onPressed: (){
 
 
 
@@ -64,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
         ),
-      ),
     );
   }
 }
+
+
+

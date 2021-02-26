@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
-import 'package:moneybox_upgrade/UI/TransactionListTile.dart';
 import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
+import 'package:moneybox_upgrade/UI/Widgets/TransactionListTile.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 import 'package:moneybox_upgrade/utils/resources.dart';
 import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
@@ -14,7 +14,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ThemeData theme ;
 
   String _headerText(DateTime date){
     DateTime _today = DateTime.now();
@@ -32,23 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double total = 0.0;
-    return FutureBuilder(
-      future: getThemeBool(),
-        builder: (context, snap){
-      if (snap.connectionState == ConnectionState.done) {
-          theme = getTheme(snap.data);
-
-        return MaterialApp(
-          theme: theme,
-            home: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => AddInvoicePage()
-                    ));
-                  },
-                  child: Icon(Icons.add),
-                ),
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => AddInvoicePage()
+            ));
+          },
+          child: Icon(Icons.add),
+        ),
 
 
                 body: FutureBuilder(
@@ -90,19 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               icon: currentCard.getIcon(),
                             ),
 
-                            expenseList(snapshot.data)
-                          ],
-                        ),
-                      );
-                    }
-                    return Center(child: CircularProgressIndicator(),);
-                  },
-                )
-            )
-        );
-      }
-      return CircularProgressIndicator();
-    });
+                    expenseList(snapshot.data)
+                  ],
+                ),
+              );
+            }
+            return Center(child: CircularProgressIndicator(),);
+          },
+        )
+    );
   }
 
 
@@ -171,4 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+
+
 

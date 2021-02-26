@@ -10,7 +10,6 @@ class SimplePrivacyPage extends StatefulWidget {
 
 class _SimplePrivacyPageState extends State<SimplePrivacyPage> {
   int _step = 0;
-  ThemeData theme = ThemeData.light();
 
 
 
@@ -18,44 +17,36 @@ class _SimplePrivacyPageState extends State<SimplePrivacyPage> {
 
   @override
   Widget build(BuildContext context) {
-    getThemeBool().then((value) {
-      setState(() {
-        theme = getTheme(value);
-      });
-    });
 
 
-    return MaterialApp(
-      theme: theme,
-      home: Scaffold(
-        body: Stepper(
-          currentStep: _step,
+    return Scaffold(
+      body: Stepper(
+        currentStep: _step,
 
-          onStepTapped: (step){
-            setState(() {
-              _step = step;
-            });
-          },
-          onStepCancel: (){
-            setState(() {
-              if (_step > 0)
-                _step--; //todo change the cancel text to back, or hide it
-            });
-          },
-          onStepContinue: (){
-            setState(() {
-              if (_step <3)
+        onStepTapped: (step){
+          setState(() {
+            _step = step;
+          });
+        },
+        onStepCancel: (){
+          setState(() {
+            if (_step > 0)
+              _step--; //todo change the cancel text to back, or hide it
+          });
+        },
+        onStepContinue: (){
+          setState(() {
+            if (_step <3)
               _step++;
-            });
-          },
-          steps: [
+          });
+        },
+        steps: [
 
-            Step(
+          Step(
               title: Text("Introduction"),
-            content: Text("We have realised how confusing and lengthy terms and conditions are. So this is a summary"
-                " of stuff we believe should be highlighted for you. Check out the full terms and conditions <here>. Your use of the app is in agreement with all the terms and conditions outside of the summary")
-            ),
-
+              content: Text("We have realised how confusing and lengthy terms and conditions are. So this is a summary"
+                  " of stuff we believe should be highlighted for you. Check out the full terms and conditions <here>. Your use of the app is in agreement with all the terms and conditions outside of the summary")
+          ),
 
             //Storage permission
             Step(title: Text("Permission: Storage"),
@@ -102,8 +93,7 @@ class _SimplePrivacyPageState extends State<SimplePrivacyPage> {
             ),
 
 
-          ],
-        ),
+        ],
       ),
     );
   }

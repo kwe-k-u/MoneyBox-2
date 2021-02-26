@@ -199,24 +199,18 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
             Spacer(),
 
 
-
-
             ElevatedButton(
                 child: Text("Add Card"),
                 onPressed: (){
                   //todo upload card
                   if (_name.isNotEmpty) {
-                    setState(() {
-                      addCard(new CardTemp(_name, _icon, _theme));
-
-                    });
                     Navigator.pop(context);
                   }
                 }
             )
           ],
         ),
-      ),
+    )
     );
   }
 }
