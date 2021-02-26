@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done){
             theme = getTheme(snapshot.data);
             return MaterialApp(
+              darkTheme: ThemeData.dark(),
+                themeMode: ThemeMode.system,
                 title: 'Flutter Demo',
                 theme: theme,
                 // theme: ThemeData(

@@ -8,9 +8,29 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage> with WidgetsBindingObserver{
   bool _themeBool = false;
 
+  @override
+  void initState() {
+
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+
+  }
+
+
+  @override
+  void didChangePlatformBrightness() {
+    final brightness = WidgetsBinding.instance.window.platformBrightness;
+  }
 
   @override
   Widget build(BuildContext context) {
