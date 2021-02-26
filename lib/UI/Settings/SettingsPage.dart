@@ -9,7 +9,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> with WidgetsBindingObserver{
-  bool _themeBool = false;
 
   @override
   void initState() {
@@ -46,12 +45,12 @@ class _SettingsPageState extends State<SettingsPage> with WidgetsBindingObserver
 
 
       body: Container(
-        child: FutureBuilder(
-          future: getThemeBool(),
-          builder: (context, snapshot){
-            if (snapshot.connectionState == ConnectionState.done) {
-              _themeBool = snapshot.data;
-              return ListView(
+        // child: FutureBuilder(
+        //   future: getThemeBool(),
+        //   builder: (context, snapshot){
+        //     if (snapshot.connectionState == ConnectionState.done) {
+        //       _themeBool = snapshot.data;
+              child: ListView(
                 children: [
 
 
@@ -106,11 +105,11 @@ class _SettingsPageState extends State<SettingsPage> with WidgetsBindingObserver
                   )
 
                 ],
-              );
-            }
-            return CircularProgressIndicator();
-          },
-        ),
+              )
+            // }
+        //     return CircularProgressIndicator();
+        //   },
+        // ),
       ),
     );
   }

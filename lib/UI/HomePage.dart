@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
-import 'package:moneybox_upgrade/UI/Widgets/TransactionListTile.dart';
-import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
-import 'package:moneybox_upgrade/utils/resources.dart';
+import 'package:moneybox_upgrade/UI/Widgets/ExpenseList.dart';
 import 'package:moneybox_upgrade/utils/FirebaseHandler.dart';
+import 'package:moneybox_upgrade/utils/resources.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -14,15 +13,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  String _headerText(DateTime date){
-    DateTime _today = DateTime.now();
-    if (date.day == _today.day && date.month == _today.month && date.year == _today.year )
-      return "Today";
-    else if (date.day == _today.day-1 && date.month == _today.month && date.year == _today.year )
-    return "Yesterday";
-    else return "${date.day}/ ${date.month}/ ${date.year}";
-  }
 
 
 
@@ -80,8 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               balance: total,
                               icon: currentCard.getIcon(),
                             ),
-
-                    expenseList(snapshot.data)
+                            ExpenseList(list: snapshot.data)
                   ],
                 ),
               );
@@ -94,69 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-  Widget expenseList(List<TransactionTemp> list){
-    DateTime _previous = DateTime.now();
-
-
-
-
-
-    if (list.length == 0)
-      return Container(
-        // width: double.infinity,
-        // height: double.infinity,
-        child: Center(
-          child: Text("You have no list of expenses for this account"),
-        ),
-      );
-
-
-
-    //listview of expenses
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.60,
-      child: Expanded(
-          child: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context,index){
-              //=====================================================
-              //transactions to test header
-              TransactionTemp transaction = list.elementAt(index);
-
-
-
-
-
-
-              //=====================================================
-              if (! _previous.isAtSameMomentAs(transaction.getTransactionDate()) ) {
-                _previous = transaction.getTransactionDate();
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
-                      child: Text(_headerText(
-                          transaction.getTransactionDate())),
-                    ),
-                    TransactionListTile(
-                      thumbnail: Icons.money,
-                      transaction: transaction,
-                    ),
-                  ],
-                );
-              }
-
-              return TransactionListTile(
-                thumbnail: Icons.money,
-                transaction: transaction,
-              );
-
-
-            },
-          )),
-    );
-  }
 }
 
 

@@ -122,3 +122,10 @@ Future<bool> getUserData() async{
 
 
 
+/**
+ * todo issues with logic
+ * 1. if we allow the name of a card to be changed then we will have to change
+ * the path for the transactions under that card. and check if the name is set as
+ * current. Preferably for the last part, it will make sense to set the changed card
+ * as the current card to overwrite the previous name in memory
+*/

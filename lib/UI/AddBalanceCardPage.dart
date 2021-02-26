@@ -13,17 +13,17 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
   String _name = "";
   String _icon = "Icons.person";
   String _theme = "Colors.black";
-  ThemeData pageTheme;
+  // ThemeData pageTheme;
 
 
   @override
   void initState() {
     super.initState();
-    getThemeBool().then((value) {
-      setState(() {
-        pageTheme = getTheme(value);
-      });
-    });
+    // getThemeBool().then((value) {
+    //   setState(() {
+    //     pageTheme = getTheme(value);
+    //   });
+    // });
   }
 
   @override
@@ -201,10 +201,21 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
 
             ElevatedButton(
                 child: Text("Add Card"),
-                onPressed: (){
+                onPressed: () {
                   //todo upload card
                   if (_name.isNotEmpty) {
                     addCard(new CardTemp(_name, _icon, _theme));
+                    Navigator.pop(context);
+                  }else{
+                    showDialog(
+                      context: context,
+                      builder: (context){
+                        return AlertDialog(
+                          title: Text("No name for card?"),
+                          content: Text("Unfortunately, a card cannot be created without a name"),
+                        );
+                      }
+                    );
                   }
                 }
             )

@@ -35,7 +35,7 @@ class BalanceCardWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(name.,
+              Text(name,
                 style: TextStyle(
                     color: Colors.white,
                   fontSize: 18.0,

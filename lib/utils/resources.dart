@@ -66,26 +66,26 @@ void googleSignOut() async {
 
   ///Gets a boolean to show the user's preference for dark theme. If none is used then,
 /// the default is false
-  Future<bool> getThemeBool() async{
-    final preference = await SharedPreferences.getInstance();
-    return  preference.getBool("darkTheme") ?? false;
-  }
+//   Future<bool> getThemeBool() async{
+//     final preference = await SharedPreferences.getInstance();
+//     return  preference.getBool("darkTheme") ?? false;
+//   }
 
 
-  void setTheme(bool value) async{
-    final preference = await SharedPreferences.getInstance();
-    await preference.setBool("darkTheme", value);
-  }
+  // void setTheme(bool value) async{
+  //   final preference = await SharedPreferences.getInstance();
+  //   await preference.setBool("darkTheme", value);
+  // }
 
 
   ///Returns a theme based on the boolean entered. True for dark theme and false for light
-  ThemeData getTheme(bool value){
-
-    if (value) //if user prefers dark theme
-      return ThemeData.dark();
-
-      return ThemeData.light();
-  }
+  // ThemeData getTheme(bool value){
+  //
+  //   if (value) //if user prefers dark theme
+  //     return ThemeData.dark();
+  //
+  //     return ThemeData.light();
+  // }
 
 
 
