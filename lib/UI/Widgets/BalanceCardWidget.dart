@@ -21,44 +21,57 @@ class BalanceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(24.0)),
-        color: this.colour
-      ),
+    return GestureDetector(
+      onTap: (){
+        showDialog(
+            context: context,
+            builder: (context){
+              return AlertDialog(
+                title: Text("Change current card?"),
+                content: Text("This will allow to see the transactions for only this card"),
+              );
+            }
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(24.0)),
+          color: this.colour
+        ),
 
-      padding: EdgeInsets.all(30.0),
-      width: size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(name,
-                style: TextStyle(
-                    color: Colors.white,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold
-                )
-              ),
-              Icon(icon,color: Colors.white,)
-            ],
-          ),
+        padding: EdgeInsets.all(30.0),
+        width: size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(name,
+                  style: TextStyle(
+                      color: Colors.white,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold
+                  )
+                ),
+                Icon(icon,color: Colors.white,)
+              ],
+            ),
 
-          SizedBox(
-            height: size.height * 0.05,
-          ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
 
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("BALANCE",
-          style: TextStyle(color: Colors.white),),
-          _showBalanceText(),
-        ],
-      ) ,
-        ],
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("BALANCE",
+            style: TextStyle(color: Colors.white),),
+            _showBalanceText(),
+          ],
+        ) ,
+          ],
+        ),
       ),
     );
   }

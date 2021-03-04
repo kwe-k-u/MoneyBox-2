@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneybox_upgrade/UI/AddTransactionPage.dart';
 import 'package:moneybox_upgrade/utils/TransactionTemp.dart';
 
 
@@ -20,13 +21,34 @@ class TransactionListTile extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         showDialog(
-          context: context,
-          builder: (context){
-            return AlertDialog(
-              title: Text("Change current card?"),
-              content: Text("This will allow to see the transactions for only this card"),
-            );
-          }
+            context: context,
+            builder: (context){
+              return AlertDialog(
+                title: Text("Edit transaction?"),
+                content: Text("This action is not reversible"),
+                actions: [
+
+
+                  TextButton(
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancel")),
+
+
+                  TextButton(
+                      onPressed: (){
+                        //todo move tile data into edit page
+                        Navigator.pop(context);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context)=> AddTransactionPage()));
+                      },
+                      child: Text("Edit")),
+
+
+                ],
+              );
+            }
         );
       },
       child: Card(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moneybox_upgrade/UI/AddInvoicePage.dart';
+import 'package:moneybox_upgrade/UI/AddTransactionPage.dart';
 import 'package:moneybox_upgrade/UI/Settings/SettingsPage.dart';
 import 'package:moneybox_upgrade/UI/Widgets/BalanceCardWidget.dart';
 import 'package:moneybox_upgrade/UI/Widgets/ExpenseList.dart';
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => AddInvoicePage()
+                builder: (context) => AddTransactionPage()
             ));
           },
           child: Icon(Icons.add),

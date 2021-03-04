@@ -75,7 +75,7 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
                 items: [
                   /**
                    * black
-                   * blue
+                   699669* blue
                    * purple
                    * deepOrange
                    * grey
@@ -183,26 +183,28 @@ class _AddBalanceCardPageState extends State<AddBalanceCardPage> {
 
                   //wifi
                   DropdownMenuItem(
-
                       value: "Icons.wifi",
-                      child: Icon(Icons.wifi)
+                      child: Icon(Icons.wifi),
                   ),
 
                   //work
                   DropdownMenuItem(
                       value: "Icons.work",
-                      child: Icon(Icons.work)
+                      child: Icon(Icons.work
+                      )
                   ),
                 ],
               ),
             ),
-            Spacer(),
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.5,
+            ),
 
 
             ElevatedButton(
                 child: Text("Add Card"),
                 onPressed: () {
-                  //todo upload card
                   if (_name.isNotEmpty) {
                     addCard(new CardTemp(_name, _icon, _theme));
                     Navigator.pop(context);
