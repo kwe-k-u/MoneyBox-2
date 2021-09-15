@@ -29,18 +29,16 @@ As at 25th January 2021, a user cannot directly delete an account made. However,
 ## Images
 The UI was designed by Elias Dzogbo of Ashesi University (class of 2023).
 
-![Image of UI template](images/template.jpg)
-UI template
-
-![Image of login page](images/login.jpeg)
-Login Page
-
-![Image of HomeScreen with positive balance](images/history_positive.jpeg)
-HomeScreen with positive balance
+<img src="images/template.jpg" alt="Image of UI template" width="50%" height="50%">      
+UI template 
 
 
-![Image of HomeScreen with negative balance](images/history_negative.jpeg)
-HomeScreen with negative balance
+<img src="images/login.jpeg" alt="Image of login page" width="25%" height="25%">     <img src="images/add_transaction.jpeg" alt="Image of Transaction addition page" width="25%" height="25%">
 
-![Image of Transaction addition page](images/add_transaction.jpeg)
-Add transaction screen
+
+
+
+
+<img src="images/history_positive.jpeg" alt="Image of HomeScreen with positive balance" width="25%" height="25%">     <img src="images/history_negative.jpeg" alt="Image of HomeScreen with negative balance" width="25%" height="25%">
+
+
